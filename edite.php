@@ -9,7 +9,6 @@
 </head>
 <body>
 <?php
-$dbconfig = include('dbconfig.php');
 $conn = mysqli_real_connect($conn, 'labit.mysql.database.azure.com', 'aphatsara836@labit', 'Po0926245419', 'ITFLab', 3306);
 if (!$conn)
 {
@@ -25,23 +24,16 @@ $comment = mysqli_fetch_array($res);
         <h1>Edit</h1>
         <form action="update.php" method="post" class="mt-4">
             <input type="hidden" name="ID" value=<?php echo $comment['ID'];?>>
-            <div class="form-group">
-                <label for="inputName">Name</label>
-                <?php
-                    echo '<input type="text" name="name" id="inputName" class="form-control" placeholder="Enter Name" value="'.$comment["Name"].'">'
-                ?>
-            </div>
-            <div class="form-group">
-                <label for="inputComment">Comment</label>
-                <textarea name="comment" class="form-control" id="inputComment" rows="3" placeholder="Enter Comment"><?php echo $comment['Comment'];?></textarea>
-            </div>
-            <div class="form-group">
-                <label for="inputLink">Link</label>
-                <?php
-                    echo '<input type="text" name="link" id="inputLink" class="form-control" placeholder="Enter Name" value="'.$comment["Link"].'">'
-                ?>
-            </div>
-            <div class="mt-4">
+                  <div class="form-group mt-5">
+                        <label class="m-3" for="name">ชื่อสินค้า</label>
+                        <input type="text" class="form-control" name="product" id="idName" placeholder="Enter Product">
+                        <label class="m-3" for="comment">ราคาต่อหน่วย</label>
+                        <input type="text" class="form-control" name="price" id="idprice" placeholder="Enter price">
+                        <label class="m-3" for="link">ส่วนลด</label>
+                        <input type="text" class="form-control" name="discount" id="iddiscount" placeholder="Enter Discount">
+                        <input class="btn btn-success mt-5" type="submit" id="commentBtn">
+                     </div>
+                       <div class="mt-4">
                 <button type="submit" class="btn btn-primary mr-1">Save</button>
                 <a role="button" class="btn btn-secondary" href="guestbook.php">Back</a>
             </div>
