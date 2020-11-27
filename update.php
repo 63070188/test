@@ -9,7 +9,8 @@
 </head>
 <body>
 <?php
-$conn = mysqli_real_connect($conn, 'labit.mysql.database.azure.com', 'aphatsara836@labit', 'Po0926245419', 'ITFLab', 3306);
+$conn = mysqli_init();
+mysqli_real_connect($conn, 'labit.mysql.database.azure.com', 'aphatsara836@labit', 'Po0926245419', 'ITFlab', 3306);
 if (!$conn)
 {
     die('Failed to connect to MySQL: '.mysqli_connect_error());
@@ -19,7 +20,7 @@ $ID = $_POST['ID'];
 $product = $_POST['product'];
 $price = $_POST['price'];
 $discount = $_POST['discount'];
-$sql = "UPDATE guestbook SET Product='$product', price='$price', discount='$discount' WHERE ID='$ID'";
+$sql = "UPDATE guestbook SET Product='$product', Price='$price', Discount='$discount' WHERE ID='$ID'";
 
 if (mysqli_query($conn, $sql)) {
     echo '<div class="container">
