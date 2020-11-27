@@ -25,16 +25,23 @@ $comment = mysqli_fetch_array($res);
         <h1>Edit</h1>
         <form action="update.php" method="post" class="mt-4">
             <input type="hidden" name="ID" value=<?php echo $comment['ID'];?>>
-                  <div class="form-group mt-5">
-                        <label class="m-3" for="product">ชื่อสินค้า</label>
-                        <input type="text" class="form-control" name="product" id="idName" placeholder="Enter Product">
-                        <label class="m-3" for="price">ราคาต่อหน่วย</label>
-                        <input type="text" class="form-control" name="price" id="idprice" placeholder="Enter price">
-                        <label class="m-3" for="discount">ส่วนลด</label>
-                        <input type="text" class="form-control" name="discount" id="iddiscount" placeholder="Enter Discount">
-                        <input class="btn btn-success mt-5" type="submit" id="commentBtn">
-                     </div>
-                       <div class="mt-4">
+            <div class="form-group">
+                <label for="inputProduct">ชื่อสินค้า</label>
+                <?php
+                    echo '<input type="text" name="product" id="inputProduct" class="form-control" placeholder="Enter Product" value="'.$comment["Product"].'">'
+                ?>
+            </div>
+            <div class="form-group">
+                <label for="inputPrice">ราคาต่อหน่อย</label>
+                <textarea name="price" class="form-control" id="inputPrice" rows="3" placeholder="Enter price"><?php echo $comment['Price'];?></textarea>
+            </div>
+            <div class="form-group">
+                <label for="inputDiscount">Link</label>
+                <?php
+                    echo '<input type="text" name="discount" id="inputDiscount" class="form-control" placeholder="Enter Discount" value="'.$comment["Discount"].'">'
+                ?>
+            </div>
+            <div class="mt-4">
                 <button type="submit" class="btn btn-primary mr-1">Save</button>
                 <a role="button" class="btn btn-secondary" href="index.php">Back</a>
             </div>
