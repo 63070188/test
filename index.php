@@ -1,59 +1,73 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>home page</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+  <title>DATABASE</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 </head>
 
 <body>
-    <?php
-    require('connect.php');
-    $res = mysqli_query($conn, 'SELECT * FROM guestbook');
-    ?>
-    <br>
-    <div class="container">
-        <table class="table table-bordered table-hover" width="1200" align="center" border="1">
-            <thead class="thead-dark">
-                <tr>
-                    <th width="300">
-                        <div align="center">ชื่อสินค้า</div>
-                    </th>
-                    <th width="300">
-                        <div align="center">ราคาต่อหน่วย</div>
-                    </th>
-                    <th width="300">
-                        <div align="center">จำนวน</div>
-                    </th>
-                    <th width="300">
-                        <div align="center">ราคาทั้งหมด</div>
-                    </th>
-                    <th width="300">
-                        <div align="center">การจัดการ</div>
-                    </th>
-                </tr>
-            </thead>
+  <?php
+  $conn = mysqli_init();
+  mysqli_real_connect($conn, 'labit.mysql.database.azure.com', 'aphatsara836@labit', 'Po0926245419', 'ITFlab', 3306);
+  if (mysqli_connect_errno($conn)) {
+    die('Failed to connect to MySQL: ' . mysqli_connect_error());
+  }
+  $res = mysqli_query($conn, 'SELECT * FROM guestbook');
+  ?>
+  <div class="container mt-5">
+    <div class="card-header bg-primary text-white d-flex justify-content-between">
+      <h3>HOME</h4>
+       <a href="form.php" class="btn btn-success">ADD</a>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-hover table-bordered table-sm">
+          <thead class="thead-dark">
+            <tr>
+              <th width="300">
+                <div align="center">Product</div>
+              </th>
+              <th width="300">
+                <div align="center">Price </div>
+              </th>
+              <th width="300">
+                <div align="center">Amount </div>
+              </th>
+              <th width="300">
+                <div align="center">Total</div>
+              </th>
+              <th width="300">
+                <div align="center">Action</div>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
             <?php
             while ($Result = mysqli_fetch_array($res)) {
             ?>
-                <tbody>
-                    <tr>
-                        <td><?php echo $Result['product']; ?></td>
-                        <td><?php echo $Result['price']; ?></td>
-                        <td><?php echo $Result['amount']; ?></td>
-                        <td><?php echo $Result['total']; ?></td>
-                        <td>
-                            <a href="delete.php?id=<?php echo $Result['id'];?>" class="btn btn-outline-danger">DELETE</a>
-                        </td>
-                    </tr>
-                </tbody>
+              <tr>
+                <td><?php echo $Result['product']; ?></td>
+                <td><?php echo $Result['price']; ?></td>
+                <td><?php echo $Result['amount']; ?></td>
+                <td><?php echo $Result['total']; ?></td>
+                <td>
+                  <a class="btn btn-danger" href="delete.php?ID=<?php echo $Result['ID']; ?>">DELETE</a>
+                </td>
+              </tr>
             <?php
             }
             ?>
-        </table>
-        <button type="button" class="btn btn-outline-warning" onclick="window.location.href='form.php'">เพืิ่มข้อมูล</button>
+          </tbody>
+          </div>
+       </div>
+      </table>
+
+
+  <?php
+  mysqli_close($conn);
+  ?>
 </body>
 
 </html>
