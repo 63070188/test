@@ -19,7 +19,7 @@
   <div class="container mt-5">
     <div class="card-header bg-primary text-white d-flex justify-content-between">
       <h3>HOME</h4>
-       <a href="form.php" class="btn btn-success">ADD</a>
+       <a href="form.php" class="btn btn-success">เพิ่มรายการ</a>
     </div>
     <div class="card-body">
       <div class="table-responsive">
@@ -27,19 +27,19 @@
           <thead class="thead-dark">
             <tr>
               <th width="300">
-                <div align="center">Product</div>
+                <div align="center">ชื่อสินค้า</div>
               </th>
               <th width="300">
-                <div align="center">Price </div>
+                <div align="center">ราคาต่อหน่วย</div>
               </th>
               <th width="300">
-                <div align="center">Amount </div>
+                <div align="center">ส่วนลด</div>
               </th>
               <th width="300">
-                <div align="center">Total</div>
+                <div align="center">ราคาหลังลด</div>
               </th>
               <th width="300">
-                <div align="center">Action</div>
+                <div align="center">การจัดการ</div>
               </th>
             </tr>
           </thead>
@@ -50,7 +50,7 @@
               <tr>
                 <td><?php echo $Result['product']; ?></td>
                 <td><?php echo $Result['price']; ?></td>
-                <td><?php echo $Result['amount']; ?></td>
+                <td><?php echo $Result['discount']; ?></td>
                 <td><?php echo $Result['total']; ?></td>
                 <td>
                   <a class="btn btn-danger" href="edite.php?ID=<?php echo $Result['ID']; ?>">EDITE</a>
