@@ -53,7 +53,7 @@
                 <td><?php echo $Result['amount']; ?></td>
                 <td><?php echo $Result['total']; ?></td>
                 <td>
-                  <a class="btn btn-danger" href="delete.php?ID=<?php echo $Result['ID']; ?>">DELETE</a>
+                  <a class="btn btn-danger" href="edite.php?ID=<?php echo $Result['ID']; ?>">EDITE</a>
                 </td>
               </tr>
             <?php
