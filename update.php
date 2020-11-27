@@ -27,7 +27,7 @@ if (mysqli_query($conn, $sql)) {
             <h3>Edited successfully.</h3>
             <a role="button" class="btn btn-primary mt-3" href="index.php">Home</a>
          </div>';
-    echo $product
+    echo $product;
 } else {
     echo "Error: " . $sql . "<br>" . mysqli_error($conn);
 }
