@@ -9,7 +9,8 @@
 </head>
 <body>
 <?php
-$conn = mysqli_real_connect($conn, 'labit.mysql.database.azure.com', 'aphatsara836@labit', 'Po0926245419', 'ITFLab', 3306);
+$conn = mysqli_init();
+mysqli_real_connect($conn, 'labit.mysql.database.azure.com', 'aphatsara836@labit', 'Po0926245419', 'ITFlab', 3306);
 if (!$conn)
 {
     die('Failed to connect to MySQL: '.mysqli_connect_error());
@@ -25,17 +26,17 @@ $comment = mysqli_fetch_array($res);
         <form action="update.php" method="post" class="mt-4">
             <input type="hidden" name="ID" value=<?php echo $comment['ID'];?>>
                   <div class="form-group mt-5">
-                        <label class="m-3" for="name">ชื่อสินค้า</label>
+                        <label class="m-3" for="product">ชื่อสินค้า</label>
                         <input type="text" class="form-control" name="product" id="idName" placeholder="Enter Product">
-                        <label class="m-3" for="comment">ราคาต่อหน่วย</label>
+                        <label class="m-3" for="price">ราคาต่อหน่วย</label>
                         <input type="text" class="form-control" name="price" id="idprice" placeholder="Enter price">
-                        <label class="m-3" for="link">ส่วนลด</label>
+                        <label class="m-3" for="discount">ส่วนลด</label>
                         <input type="text" class="form-control" name="discount" id="iddiscount" placeholder="Enter Discount">
                         <input class="btn btn-success mt-5" type="submit" id="commentBtn">
                      </div>
                        <div class="mt-4">
                 <button type="submit" class="btn btn-primary mr-1">Save</button>
-                <a role="button" class="btn btn-secondary" href="guestbook.php">Back</a>
+                <a role="button" class="btn btn-secondary" href="index.php">Back</a>
             </div>
         </form>
     </div>
