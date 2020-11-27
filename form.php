@@ -1,42 +1,29 @@
-<?php
-require('connect.php');
-if (isset($_POST['submit'])) {
-    $product = $_POST['product'];
-    $price = $_POST['price'];
-    $amount = $_POST['amount'];
-    $total = $price * $amount;
-
-    $sql = "INSERT INTO guestbook (product , price, amount, total) VALUES ('$product', '$price', '$amount', '$total')";
-    if (mysqli_query($conn, $sql)) {
-        echo "New record created successfully";
-        echo "<a href='index.php'>back to home page</a>";
-    } else {
-        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-    }
-}
-?>
-
-
-
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>form page</title>
+  <title>Comment Form</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 </head>
-
 <body>
-    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-        <label for="product">product</label>
-        <input type="text" name="product">
-        <label for="price">price</label>
-        <input type="text" name="price">
-        <label for="amount">amount</label>
-        <input type="text" name="amount">
-        <input type="submit" value="ยืนยัน" name="submit">
+  <div class="container">
+    <div class="card-header bg-primary text-white d-flex justify-content-between">
+     <h3>ADD</h4>
+     <a href="index.php" class="btn btn-light">BACK</a>
+    </div>
+    <form action="insert.php" method="post" id="CommentForm">
+      <div class="form-group mt-5">
+        <label class="m-3" for="name">Product</label>
+        <input type="text" class="form-control" name="product" id="idName" placeholder="Enter Product">
+        <label class="m-3" for="comment">Price</label>
+        <input type="text" class="form-control" name="price" id="idprice" placeholder="Enter price">
+        <label class="m-3" for="link">Amount</label>
+        <input type="text" class="form-control" name="amount" id="idamount" placeholder="Enter Amount">
+        <input class="btn btn-success mt-5" type="submit" id="commentBtn">
+      </div>
     </form>
+  </div>
 </body>
-
 </html>
