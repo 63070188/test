@@ -13,7 +13,7 @@ $amount = $_POST['amount'];
 $total = $price*$amount;
 
 
-$sql = "INSERT INTO testtable (product , price , amount, total) VALUES ('$product', '$price', '$amount', '$total')";
+$sql = "INSERT INTO guestbook (product , price , amount, total) VALUES ('$product', '$price', '$amount', '$total')";
 
 ?>
 
