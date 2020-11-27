@@ -36,7 +36,7 @@ $comment = mysqli_fetch_array($res);
                 <textarea name="price" class="form-control" id="inputPrice" rows="3" placeholder="Enter price"><?php echo $comment['Price'];?></textarea>
             </div>
             <div class="form-group">
-                <label for="inputDiscount">Link</label>
+                <label for="inputDiscount">ส่วนลด</label>
                 <?php
                     echo '<input type="text" name="discount" id="inputDiscount" class="form-control" placeholder="Enter Discount" value="'.$comment["Discount"].'">'
                 ?>
