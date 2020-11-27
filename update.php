@@ -10,7 +10,7 @@
 <body>
 <?php
 $conn = mysqli_init();
-mysqli_real_connect($conn, 'labit.mysql.database.azure.com', 'aphatsara836@labit', 'Po0926245419', 'ITFlab', 3306);
+mysqli_real_connect($conn, 'labit.mysql.database.azure.com', 'aphatsara836@labit', 'Po0926245419', 'ITFLab', 3306);
 if (!$conn)
 {
     die('Failed to connect to MySQL: '.mysqli_connect_error());
@@ -24,6 +24,7 @@ $sql = "UPDATE guestbook SET Product='$product', Price='$price', Discount='$disc
 
 if (mysqli_query($conn, $sql)) {
     echo '<div class="container">
+        $product $price $discount
             <h3>Edited successfully.</h3>
             <a role="button" class="btn btn-primary mt-3" href="index.php">Home</a>
          </div>';
