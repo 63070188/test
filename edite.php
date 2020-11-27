@@ -1,45 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ITF Lab</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
 <?php
-    $conn = mysqli_connect('labit.mysql.database.azure.com', 'aphatsara836@labit', 'Po0926245419', 'ITFLab');
+$conn = mysqli_init();
+mysqli_real_connect($conn, 'labit.mysql.database.azure.com', 'aphatsara836@labit', 'Po0926245419', 'ITFlab', 3306);
+if (!$conn)
+{
+    die('Failed to connect to MySQL: '.mysqli_connect_error());
+}
 
-    $id = $_GET['ID'];
-
-    $sql = 'SELECT * FROM guestboook WHERE ID = ' . $ID . '';
-    $query = mysqli_query($conn, $sql);
-    if (!$query) {
-//         header('Location: index.php');
-    } else {
-        $data = mysqli_fetch_assoc($query);
-    }
-    ?>
-  <!DOCTYPE html>
-  <html>
-
-  <head>
-      <title>Comment Form</title>
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-  </head>
-
-  <body>
-      <div class="container">
-          <div class="card-header bg-primary text-white d-flex justify-content-between">
-           <h3>EDIT</h3>
-           <a href="index.php" class="btn btn-light">BACK</a>
-          </div>
-          <form action="update.php" method="post" id="CommentForm">
-              <div class="form-group mt-5">
-                  <input type="text" name="ID" value="<?php echo $data['ID']; ?>" class="form-control d-none" required>
-                  <label class="m-3" for="product">Product</label>
-                  <input type="text" class="form-control" name="product" id="idProduct" value="<?php echo $data['Product'];?>">
-                  <label class="m-3" for="price">Price</label>
-                  <textarea rows="5" class="form-control" cols="20" name="price" id="idPrice" ><?php echo $data['Price'];?></textarea><br>
-                  <label class="m-3" for="discount">Discount</label>
-                  <input type="text" class="form-control" name="discount" id="idDiscount" value="<?php echo $data['Discount'];?>">
-                  <input class="btn btn-primary mt-5" type="submit" id="commentBtn">
-              </div>
-          </form>
-      </div>
-  </body>
-
-  </html>
+$ID = $_POST['ID'];
+$sql = "SELECT * FROM guestbook WHERE ID='$ID'";
+$res = mysqli_query($conn, $sql);
+$comment = mysqli_fetch_array($res);
+?>
+    <div class="container">
+        <h1>Edit</h1>
+        <form action="update.php" method="post" class="mt-4">
+            <input type="hidden" name="ID" value=<?php echo $comment['ID'];?>>
+            <div class="form-group">
+                <label for="inputProduct">ชื่อสินค้า</label>
+                <?php
+                    echo '<input type="text" name="product" id="inputProduct" class="form-control" placeholder="Enter Product" value="'.$comment["Product"].'">'
+                ?>
+            </div>
+            <div class="form-group">
+                <label for="inputPrice">ราคาต่อหน่อย</label>
+                <textarea name="price" class="form-control" id="inputPrice" rows="3" placeholder="Enter price"><?php echo $comment['Price'];?></textarea>
+            </div>
+            <div class="form-group">
+                <label for="inputDiscount">ส่วนลด</label>
+                <?php
+                    echo '<input type="text" name="discount" id="inputDiscount" class="form-control" placeholder="Enter Discount" value="'.$comment["Discount"].'">'
+                ?>
+            </div>
+            <div class="mt-4">
+                <button type="submit" class="btn btn-primary mr-1">Save</button>
+                <a role="button" class="btn btn-secondary" href="index.php">Back</a>
+            </div>
+        </form>
+    </div>
+<?php
+mysqli_close($conn);
+?>
+</body>
+</html>
