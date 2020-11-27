@@ -9,11 +9,11 @@ if (mysqli_connect_errno($conn)) {
 
 $product = $_POST['product'];
 $price = $_POST['price'];
-$amount = $_POST['amount'];
-$total = $price*$amount;
+$discount = $_POST['discount'];
+$total = $price-($price*($discount/100));
 
 
-$sql = "INSERT INTO guestbook (product , price , amount, total) VALUES ('$product', '$price', '$amount', '$total')";
+$sql = "INSERT INTO guestbook (product , price , discount, total) VALUES ('$product', '$price', '$discount', '$total')";
 
 ?>
 
