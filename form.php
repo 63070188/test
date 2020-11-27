@@ -15,12 +15,12 @@
     </div>
     <form action="insert.php" method="post" id="CommentForm">
       <div class="form-group mt-5">
-        <label class="m-3" for="name">Product</label>
+        <label class="m-3" for="name">ชื่อสินค้า</label>
         <input type="text" class="form-control" name="product" id="idName" placeholder="Enter Product">
-        <label class="m-3" for="comment">Price</label>
+        <label class="m-3" for="comment">ราคาต่อหน่วย</label>
         <input type="text" class="form-control" name="price" id="idprice" placeholder="Enter price">
-        <label class="m-3" for="link">Amount</label>
-        <input type="text" class="form-control" name="amount" id="idamount" placeholder="Enter Amount">
+        <label class="m-3" for="link">ส่วนลด</label>
+        <input type="text" class="form-control" name="discount" id="iddiscount" placeholder="Enter Discount">
         <input class="btn btn-success mt-5" type="submit" id="commentBtn">
       </div>
     </form>
