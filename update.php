@@ -24,7 +24,7 @@ $sql = "UPDATE guestbook SET Product='$product', price='$price', discount='$disc
 if (mysqli_query($conn, $sql)) {
     echo '<div class="container">
             <h3>Edited successfully.</h3>
-            <a role="button" class="btn btn-primary mt-3" href="guestbook.php">Home</a>
+            <a role="button" class="btn btn-primary mt-3" href="index.php">Home</a>
          </div>';
 } else {
     echo "Error: " . $sql . "<br>" . mysqli_error($conn);
